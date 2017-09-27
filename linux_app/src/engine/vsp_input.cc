@@ -108,6 +108,7 @@ bool VspInput::VspGetData_()
 
 	//usleep(30*1000);
     if (!result) {
+       	std::cerr << "Succeed to get context!" <<std::endl;
 		return true;
     } else {
        	std::cerr << "Failed to get context!" << result <<std::endl;

@@ -12,7 +12,8 @@
 #define LEN 10*3*160
 using namespace std;
 
-//#define DEBUG
+#define DUMP
+#define DEBUG
 #define PORT 6666
 
 int main(int argc, char* argv[])
@@ -66,12 +67,13 @@ int main(int argc, char* argv[])
 	while(i-- >= 0){
 		m_vspInput.VspGetData_();
 
-//		copy(m_vspInput.rawMicChannels_[0].begin(),m_vspInput.rawMicChannels_[0].end(),buf); 
+		memcpy(buf, &m_vspInput.rawMicChannels_[0][0], sizeof(int16_t)*480);
 
-		
+		send(sock_fd, buf, sizeof(int16_t)*480, 0);
 
-//		send(sock_fd, buf, LEN*2, 0);
+#ifdef DUMP
 		fwrite(&m_vspInput.rawMicChannels_[0][0], sizeof(int16_t), m_vspInput.rawMicChannels_[0].size(), out_file);
+#endif
 
 #ifdef DEBUG	
 	printf("vspInput_getdata cout:%d, Raw data size:%lu\n", i, m_vspInput.rawMicChannels_[0].size());
