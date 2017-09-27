@@ -1,3 +1,3 @@
 # VDSP_IDE
 
-Any body who can participate this project is welcome.
+Any body who can participate in this project is welcomed.
